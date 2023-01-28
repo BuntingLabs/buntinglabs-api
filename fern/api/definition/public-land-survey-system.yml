@@ -16,20 +16,26 @@ services:
           path: /section 
           request:
             name: GeocodeRequest
-            section: 
-              type: integer 
-              docs: The section number, between 1 and 36 (inclusive), specifies which section of the township should be returned.
-            range: 
-              types: string 
-              docs: The range specifies the numbered distance and bearing (east or west) from the principal meridian.
-            township: 
-              types: The principal meridian for the target survey. You can find a list of principal meridians in the United States on Wikipedia.
-              docs: The township specifies the numbered distance and bearing (north or south) from the baseline associated with each principal meridian.
-            meridian:
-              types: string 
-              docs: This can take any value below. The values are provided alongside their approximate count, based on the total area surveyed to that meridian.
-            api_key: 
-                type: string 
-                docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
-              
-              
+            query-parameters:
+              section: 
+                type: integer 
+                docs: The section number, between 1 and 36 (inclusive), specifies which section of the township should be returned.
+              # range: 
+              #   types: string 
+              #   docs: The range specifies the numbered distance and bearing (east or west) from the principal meridian.
+                township: 
+                  types: string 
+                  docs: The township specifies the numbered distance and bearing (north or south) from the baseline associated with each principal meridian.
+                meridian:
+                  types: string 
+                  docs: This can take any value below. The values are provided alongside their approximate count, based on the total area surveyed to that meridian.
+                api_key: 
+                    type: string 
+                    docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
+          examples: 
+            - request: 
+                section: =31 
+                range: 5W
+                township: 25 
+                meridian: Mount+Diablo+Meridian
+                api_key: demo-key
