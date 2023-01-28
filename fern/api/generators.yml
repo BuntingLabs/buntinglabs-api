@@ -5,14 +5,14 @@ groups:
         version: 0.0.264
         output:
           location: npm
-          package-name: '@fern-api/{company}'
+          package-name: '@fern-api/buntinglabs'
           token: ${FERN_NPM_TOKEN}
         github:
-          repository: fern-{company}/{company}-node
+          repository: fern-buntinglabs/buntinglabs-node
       - name: fernapi/fern-openapi
         version: 0.0.19
         github:
-          repository: fern-{company}/{company}-openapi
+          repository: fern-buntinglabs/buntinglabs-openapi
       - name: fernapi/fern-postman
         version: 0.0.34
         output:
@@ -20,4 +20,4 @@ groups:
           api-key: ${FERN_POSTMAN_API_KEY}
           workspace-id: ${FERN_POSTMAN_WORKSPACE_ID}
         github:
-          repository: fern-{company}/{company}-postman
+          repository: fern-buntinglabs/buntinglabs-postman
