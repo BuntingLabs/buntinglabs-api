@@ -3,36 +3,35 @@
 services:
   http:
     PoiService:
-      base-path: /poi 
+      base-path: /poi
       auth: true
       endpoints:
         neighborhood:
           display-name: Neighborhood Description
           docs: This endpoint generates a description of a neighborhood surrounding a location. This is useful for describing a rental or home listing on a website or contextualizing a potential investment opportunity for prospective investors.
-          method: GET 
+          method: GET
           path: /
-          request: 
+          request:
             name: PoiRequest
             query-parameters:
-              location: 
-                type: string 
+              location:
+                type: string
                 docs: The location of the area to describe.
-              api_key: 
-                type: string 
+              api_key:
+                type: string
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
-          response: string 
-          examples: 
+          response: string
+          examples:
             - query-parameters:
-                  location: -122.4319,37.7849
-                  api_key: demo 
+                location: -122.4319,37.7849
+                api_key: demo
               response:
-                body: 
-                  Welcome to Japantown, a vibrant and diverse neighborhood in San Francisco! 
-                  The area is known for its many nearby Asian restaurants, and the convenience of having a Safeway right around the corner for all your grocery needs. 
-                  The neighborhood is highly educated, with 29% of residents holding masters degrees. 
-                  The area is very walkable and densely populated with 3-story buildings. 
-                  The average home in the area sells for $1.2M. 
-                  The nearby public schools are rated as 5/10, it may not be the best option for families with school-aged children. 
-                  But for those that work in the Financial District, the SFMTA 24 and 38 buses provide good transit options into the city. 
+                body:
+                  Welcome to Japantown, a vibrant and diverse neighborhood in San Francisco!
+                  The area is known for its many nearby Asian restaurants, and the convenience of having a Safeway right around the corner for all your grocery needs.
+                  The neighborhood is highly educated, with 29% of residents holding masters degrees.
+                  The area is very walkable and densely populated with 3-story buildings.
+                  The average home in the area sells for $1.2M.
+                  The nearby public schools are rated as 5/10, it may not be the best option for families with school-aged children.
+                  But for those that work in the Financial District, the SFMTA 24 and 38 buses provide good transit options into the city.
                   This is a great neighborhood for those looking to be in the heart of the city, with easy access to all that San Francisco has to offer.
-              

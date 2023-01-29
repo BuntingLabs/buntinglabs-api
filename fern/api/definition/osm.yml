@@ -11,7 +11,7 @@ services:
       endpoints:
         extractFeatures:
           display-name: Extract Features
-          docs: | 
+          docs: |
             This endpoint downloads features from OpenStreetMap based on tags and optionally a bounding box, resulting in a GeoJSON.
             This API extracts features from the OpenStreetMap database and formats them as GeoJSON.
             You can filter for any tag in the database, either as `key=value` or `key=*`, and can chain tags if you need 2+ tags.
@@ -21,13 +21,13 @@ services:
             name: ExtractFeaturesRequest
             query-parameters:
               tags:
-                docs: | 
+                docs: |
                   This is a list of tags in the form `key=value` to filter features for. All features extracted will satisfy each of the passed tags given by this parameter.
                   This tag list can be created by forming an array of `key=value` items and joining them into one string with the `&` character.
                   Because both = and & are reserved characters in URIs, this list must be URL encoded.
                   An example list of tags could be `leisure=park` and `name=Westglen Park`. This matches parks that have the name Westglen Park. To set this parameter, we’ll URL encode leisure=park&name=Westglen Park.
                   Documentation on tags can be found on the [TagInfo](https://docs.buntinglabs.com/openstreetmap-api/count#:~:text=found%20on%20the-,TagInfo,-resource%20website) resource website.
-                type: string 
+                type: string
               bbox:
                 docs: |
                   This is the bounding box for extracted features. The coordinates (in EPSG:4326) of the bounding box are required to be in (minimum longitude, minimum latitude, maximum longitude, maximum latitude) order. 
@@ -40,14 +40,14 @@ services:
                   Your account's API key. 
                   You can create an API key by registering for an account and copy and paste it from your account dashboard.
                 type: string
-          response: 
+          response:
             docs: "When the OSM feature extract is successfully created, a 200 OK response will be issued, with `Content-Type: application/json`. The body will be a valid [GeoJSON FeatureCollection](https://geojson.org/)."
             type: commons.FeatureCollection
           examples:
             - query-parameters:
-                  tags: aeroway%3Drunway
-                  bbox: "-118.663330,33.580303,-117.507019,34.311681"
-                  api_key: demo 
+                tags: aeroway%3Drunway
+                bbox: "-118.663330,33.580303,-117.507019,34.311681"
+                api_key: demo
               response:
                 body:
                   type: commons.FeatureCollection
@@ -68,23 +68,24 @@ services:
                             - 40.7989041
                           - - 111.9623558
                             - 40.7735137
+
         countFeatures:
           display-name: Count Features
           docs: |
             This endpoint counts the features in OpenStreetMap that match the given tags and reside in a bounding box.
           path: /count
-          method: GET 
+          method: GET
           request:
             name: CountFeaturesRequest
             query-parameters:
               tags:
-                docs: | 
+                docs: |
                   This is a list of tags in the form `key=value` to filter features for. All features extracted will satisfy each of the passed tags given by this parameter.
                   This tag list can be created by forming an array of `key=value` items and joining them into one string with the `&` character.
                   Because both = and & are reserved characters in URIs, this list must be URL encoded.
                   An example list of tags could be `leisure=park` and `name=Westglen Park`. This matches parks that have the name Westglen Park. To set this parameter, we’ll URL encode leisure=park&name=Westglen Park.
                   Documentation on tags can be found on the [TagInfo](https://docs.buntinglabs.com/openstreetmap-api/count#:~:text=found%20on%20the-,TagInfo,-resource%20website) resource website.
-                type: string 
+                type: string
               bbox:
                 docs: |
                   This is the bounding box for extracted features. The coordinates (in EPSG:4326) of the bounding box are required to be in (minimum longitude, minimum latitude, maximum longitude, maximum latitude) order. 
@@ -101,7 +102,7 @@ services:
             docs: "When features are successfully counted, a 200 OK response will be issued, with Content-Type: `application/json`. The body will have a property `feature_count` which will be an unsigned integer representing the number of features matching the tags and bounding box."
             type: CountFeatureResponse
 
-types: 
+types:
   CountFeatureResponse:
     properties:
-      feature_count: integer 
+      feature_count: integer

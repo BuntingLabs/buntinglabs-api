@@ -3,34 +3,34 @@
 types:
   FeatureCollection:
     properties:
-      type: string 
+      type: string
       features: list<Feature>
 
   Feature:
     properties:
-      type: string 
+      type: string
       geometry: FeatureGeometry
       properties: FeatureProperties
 
   FeatureProperties: unknown
-  
+
   FeatureGeometry:
     properties:
-      type: string 
+      type: string
       coordinates: list<list<Coordinate>>
 
   Coordinate: double
 
-  CountFeatureResponse: 
+  CountFeatureResponse:
     properties:
       feature_count:
-        type: optional<integer> 
+        type: optional<integer>
         docs: The number of features matching the filter tags and bounding box
 
   GeocodeProperties:
     properties:
-      description: string 
-      acreage: integer 
+      description: string
+      acreage: integer
 
   GeocodeGeomtery:
     properties:

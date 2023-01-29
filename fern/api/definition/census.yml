@@ -14,85 +14,86 @@ services:
             name: ExtractFeaturesRequest
             query-parameters:
               center:
-                docs: | 
+                docs: |
                   The center of the circle as a coordinate. Residents inside this circle will be counted in calculating the population count.
                   The center coordinate is formatted as longitude,latitude. One of center or address is required.
                 type: optional<string>
-              address: 
-                docs: | 
+              address:
+                docs: |
                   The center of the circle as an address. Residents inside this circle will be counted in calculating the population count.
                   If the address is ambiguous, the best result will be chosen, which may or may not be the target address. 
                   To get the best results, provide the full address, including: building number, street name, city name, state, zip code, and country.
                 type: optional<string>
               radius:
                 docs: The radius around the center, in meters. Maximum radius is 16,093 meters (10 miles).
-                type: double 
-              api_key: 
-                type: string 
+                type: double
+              api_key:
+                type: string
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
-          response: PopulationResponse 
+          response: PopulationResponse
           examples:
             - query-parameters:
-                  center: -118.328228,33.342819
-                  radius: 1000.0
-                  api_key: demo 
+                center: -118.328228,33.342819
+                radius: 1000.0
+                api_key: demo
               response:
-                body: 
+                body:
                   population: 3364
                   source: US Census Bureau
 
-        median: 
-          docs: | 
+        median:
+          docs: |
             Calculate the median income of the population inside a circle centered at a point with a given radius.
             You can provide either a coordinate (latitude and longitude) or an address, plus a radius around the center.
             This endpoint is useful for real estate applications, when one might want to contextualize a property according to its surrounding neighborhood.
           display-name: Median Income
-          path: /income 
+          path: /income
           request:
             name: IncomeRequest
             query-parameters:
               center:
-                docs: | 
+                docs: |
                   The center of the circle as a coordinate. Residents inside this circle will be counted in calculating the population count.
                   The center coordinate is formatted as longitude,latitude. One of center or address is required.
                 type: optional<string>
-              address: 
-                docs: | 
+              address:
+                docs: |
                   The center of the circle as an address. Residents inside this circle will be counted in calculating the population count.
                   If the address is ambiguous, the best result will be chosen, which may or may not be the target address. 
                   To get the best results, provide the full address, including: building number, street name, city name, state, zip code, and country.
                 type: optional<string>
               radius:
                 docs: The radius around the center, in meters. Maximum radius is 16,093 meters (10 miles).
-                type: double 
-              api_key: 
-                type: string 
+                type: double
+              api_key:
+                type: string
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
-          response: IncomeResponse 
+          response: IncomeResponse
           examples:
             - query-parameters:
-                  center: -118.328228,33.342819
-                  radius: 1000.0
-                  api_key: demo 
+                center: -118.328228,33.342819
+                radius: 1000.0
+                api_key: demo
               response:
-                body: 
+                body:
                   median_income: 34856.37
                   source: US Census ACS 2020
 
-types:  
+types:
   PopulationResponse:
     properties:
-      population: 
+      population:
         type: optional<integer>
         docs: The expected number of residents in the circle, based on US census data.
-      source: 
+      source:
         type: optional<string>
         docs: A descriptive source for the data, including the year the data was collected.
-  IncomeResponse: 
+
+  IncomeResponse:
     properties:
-      median_income: 
+      median_income:
         type: optional<double>
         docs: The median income of the population of the circle, according to US Census data.
-      source: 
+      source:
         type: optional<string>
         docs: A descriptive source for the data, including the year the data was collected.
