@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
+imports:
+  commons: commons.yml
+
 services:
   http:
     OsmService:
@@ -39,16 +42,15 @@ services:
                 type: string
           response: 
             docs: "When the OSM feature extract is successfully created, a 200 OK response will be issued, with `Content-Type: application/json`. The body will be a valid [GeoJSON FeatureCollection](https://geojson.org/)."
-            type: FeatureCollection
+            type: commons.FeatureCollection
           examples:
-            - request: 
-                query-parameters:
+            - query-parameters:
                   tags: aeroway%3Drunway
                   bbox: "-118.663330,33.580303,-117.507019,34.311681"
-                  api-key: demo 
+                  api_key: demo 
               response:
                 body:
-                  type: FeatureCollection
+                  type: commons.FeatureCollection
                   features:
                     - type: Feature
                       properties:
@@ -99,30 +101,7 @@ services:
             docs: "When features are successfully counted, a 200 OK response will be issued, with Content-Type: `application/json`. The body will have a property `feature_count` which will be an unsigned integer representing the number of features matching the tags and bounding box."
             type: CountFeatureResponse
 
-
-types:
-  FeatureCollection:
+types: 
+  CountFeatureResponse:
     properties:
-      type: string 
-      features: list<Feature>
-
-  Feature:
-    properties:
-      type: string 
-      geometry: FeatureGeometry
-      properties: FeatureProperties
-
-  FeatureProperties: unknown
-  
-  FeatureGeometry:
-    properties:
-      type: string 
-      coordinates: list<list<Coordinate>>
-
-  Coordinate: double
-
-  CountFeatureResponse: 
-    properties:
-      feature_count:
-        type: optional<integer> 
-        docs: The number of features matching the filter tags and bounding box.
+      feature_count: integer 

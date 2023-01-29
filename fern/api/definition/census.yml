@@ -32,8 +32,7 @@ services:
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
           response: PopulationResponse 
           examples:
-            - request:
-                query-parameters:
+            - query-parameters:
                   center: -118.328228,33.342819
                   radius: 1000.0
                   api_key: demo 
@@ -71,8 +70,7 @@ services:
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
           response: IncomeResponse 
           examples:
-            - request:
-                query-parameters:
+            - query-parameters:
                   center: -118.328228,33.342819
                   radius: 1000.0
                   api_key: demo 
@@ -80,7 +78,6 @@ services:
                 body: 
                   median_income: 34856.37
                   source: US Census ACS 2020
-
 
 types:  
   PopulationResponse:
@@ -94,7 +91,7 @@ types:
   IncomeResponse: 
     properties:
       median_income: 
-        type: optional<integer>
+        type: optional<double>
         docs: The median income of the population of the circle, according to US Census data.
       source: 
         type: optional<string>

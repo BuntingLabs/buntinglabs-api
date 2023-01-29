@@ -22,8 +22,7 @@ services:
                 docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
           response: string 
           examples: 
-            - request:
-                query-parameters:
+            - query-parameters:
                   location: -122.4319,37.7849
                   api_key: demo 
               response:

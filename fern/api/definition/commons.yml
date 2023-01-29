@@ -1,4 +1,38 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
 types:
-  id: string
+  FeatureCollection:
+    properties:
+      type: string 
+      features: list<Feature>
+
+  Feature:
+    properties:
+      type: string 
+      geometry: FeatureGeometry
+      properties: FeatureProperties
+
+  FeatureProperties: unknown
+  
+  FeatureGeometry:
+    properties:
+      type: string 
+      coordinates: list<list<Coordinate>>
+
+  Coordinate: double
+
+  CountFeatureResponse: 
+    properties:
+      feature_count:
+        type: optional<integer> 
+        docs: The number of features matching the filter tags and bounding box
+
+  GeocodeProperties:
+    properties:
+      description: string 
+      acreage: integer 
+
+  GeocodeGeomtery:
+    properties:
+      type: string
+      coordinates: string
