@@ -7,11 +7,11 @@ services:
       auth: true
       endpoints:
         population:
-          display-name: Extract Features
+          display-name: Population
           docs: Calculate the number of people living in a radius around a point, according to US Census data.
-          path: /extract
+          path: /population
           request:
-            name: ExtractFeaturesRequest
+            name: PopulationRequest
             query-parameters:
               center:
                 docs: |
