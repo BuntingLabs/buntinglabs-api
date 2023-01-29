@@ -1,65 +1,77 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.dev.json
 
 imports:
   commons: commons.yml
 
-services:
-  http:
-    GeocodeService:
-      base-path: /plss
-      auth: true
-      docs: Locate and download the boundary of a section inside a survey township as GeoJSON
-      endpoints:
-        section:
-          display-name: Geocode Section
-          docs:
-            This API finds a Public Land Survey System section based on its section number, range, township, and principal meridian.
-            For example, if you were looking at a survey plat in San Francisco, California, it might refer to the section as being section 31 in range R05W, township T02S, and meridian MDM.
-            This means that the section falls inside the survey township located 2 townships south and 5 townships west of the Mt. Diablo Meridian and its base line, and as section 31, it is the southwest corner of that township.
-            This API enables you to download the GeoJSON for a particular range, township, meridian, and section number combination.
-          path: /section
-          request:
-            name: GeocodeSectionRequest
-            query-parameters:
-              section:
-                type: integer
-                docs: The section number, between 1 and 36 (inclusive), specifies which section of the township should be returned.
-              range:
-                type: string
-                docs: The range specifies the numbered distance and bearing (east or west) from the principal meridian.
-              township:
-                type: string
-                docs: The township specifies the numbered distance and bearing (north or south) from the baseline associated with each principal meridian.
-              meridian:
-                type: string
-                docs: This can take any value below. The values are provided alongside their approximate count, based on the total area surveyed to that meridian.
-              api_key:
-                type: string
-                docs: Your account's API key. You can create an API key by [registering for an account](https://buntinglabs.com/account/register) and copy and paste it from your [account dashboard](https://buntinglabs.com/dashboard).
-          response: GeocodeSectionResponse
-          examples:
-            - query-parameters:
-                section: 31
-                range: 5W
-                township: "25"
-                meridian: Mount+Diablo+Meridian
-                api_key: demo-key
-              response:
-                body:
-                  type: Feature
-                  properties:
-                    description: Sec. 31, T.2S, R.5W, Mount Diablo P.M.
-                    acreage: 640
-                  geometry:
-                    type: Polygon
-                    coordinates:
-                      [
-                        [-122.462026, 37.70797],
-                        [-122.4413432, 37.70795],
-                        [-122.4424872, 37.72361],
-                        [-122.4621782, 37.72367],
-                        [-122.462026, 37.70797],
-                      ]
+service:
+  base-path: /plss
+  auth: true
+  docs: Locate and download the boundary of a section inside a survey township as
+    GeoJSON
+  endpoints:
+    section:
+      display-name: Geocode Section
+      docs: This API finds a Public Land Survey System section based on its section
+        number, range, township, and principal meridian. For example, if you
+        were looking at a survey plat in San Francisco, California, it might
+        refer to the section as being section 31 in range R05W, township T02S,
+        and meridian MDM. This means that the section falls inside the survey
+        township located 2 townships south and 5 townships west of the Mt.
+        Diablo Meridian and its base line, and as section 31, it is the
+        southwest corner of that township. This API enables you to download the
+        GeoJSON for a particular range, township, meridian, and section number
+        combination.
+      path: /section
+      request:
+        name: GeocodeSectionRequest
+        query-parameters:
+          section:
+            type: integer
+            docs: The section number, between 1 and 36 (inclusive), specifies which section
+              of the township should be returned.
+          range:
+            type: string
+            docs: The range specifies the numbered distance and bearing (east or west) from
+              the principal meridian.
+          township:
+            type: string
+            docs: The township specifies the numbered distance and bearing (north or south)
+              from the baseline associated with each principal meridian.
+          meridian:
+            type: string
+            docs: This can take any value below. The values are provided alongside their
+              approximate count, based on the total area surveyed to that
+              meridian.
+          api_key:
+            type: string
+            docs: Your account's API key. You can create an API key by [registering for an
+              account](https://buntinglabs.com/account/register) and copy and
+              paste it from your [account
+              dashboard](https://buntinglabs.com/dashboard).
+      response: GeocodeSectionResponse
+      examples:
+        - query-parameters:
+            section: 31
+            range: 5W
+            township: "25"
+            meridian: Mount+Diablo+Meridian
+            api_key: demo-key
+          response:
+            body:
+              type: Feature
+              properties:
+                description: Sec. 31, T.2S, R.5W, Mount Diablo P.M.
+                acreage: 640
+              geometry:
+                type: Polygon
+                coordinates:
+                  [
+                    [ -122.462026, 37.70797 ],
+                    [ -122.4413432, 37.70795 ],
+                    [ -122.4424872, 37.72361 ],
+                    [ -122.4621782, 37.72367 ],
+                    [ -122.462026, 37.70797 ]
+                  ]
 
 types:
   GeocodeSectionResponse:
