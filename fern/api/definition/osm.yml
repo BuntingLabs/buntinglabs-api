@@ -100,9 +100,5 @@ services:
                 type: string
           response:
             docs: "When features are successfully counted, a 200 OK response will be issued, with Content-Type: `application/json`. The body will have a property `feature_count` which will be an unsigned integer representing the number of features matching the tags and bounding box."
-            type: CountFeatureResponse
+            type: commons.CountFeatureResponse
 
-types:
-  CountFeatureResponse:
-    properties:
-      feature_count: integer
